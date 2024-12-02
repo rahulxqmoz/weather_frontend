@@ -4,7 +4,7 @@ import { Line } from 'react-chartjs-2';
 
 const WeatherChart = ({ weatherData }) => {
   // Safely access nested data
-  console.log(weatherData)
+  
   const forecastDays = weatherData?.forecast?.forecastday;
 
   if (!forecastDays || forecastDays.length === 0) {
