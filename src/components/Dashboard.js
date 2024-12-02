@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WeatherCard from './WeatherCard';
 import WeatherChart from './WeatherChart';
@@ -13,36 +13,41 @@ const Dashboard = () => {
     const { role, token,user } = useSelector((state) => state.auth);
     const { weatherData, loading } = useSelector((state) => state.weather);
     const [city, setCity] = useState("Palakkad"); // Default city 
+    const [debouncedCity, setDebouncedCity] = useState(city);
     const navigate = useNavigate();
     const dispatch = useDispatch(); 
-    const debounceTimer = useRef(null); 
+
   
     useEffect(() => {
       if (!token) {
         navigate("/login");
       } else {
-        console.log('hi')
-        dispatch(fetchWeatherData({ city, token }));
+       
       }
     }, [token, city]);
+    
+    useEffect(() => {
+      // Fetch weather data when debouncedCity changes
+      dispatch(fetchWeatherData({ city: debouncedCity, token }));
+    }, [debouncedCity, token, dispatch]);
  
+    useEffect(() => {
+      const handler = setTimeout(() => {
+        setDebouncedCity(city);
+      }, 1500); 
+
+      return () => {
+        clearTimeout(handler);
+      };
+    }, [city]);
 
     const handleLogout = () => {
         dispatch(logout());
         navigate("/"); 
     };
 
-     const handleCityChange = (e) => {
-        const newCity = e.target.value;
-        setCity(newCity);
-
-        if (debounceTimer.current) {
-            clearTimeout(debounceTimer.current); 
-        }
-
-        debounceTimer.current = setTimeout(() => {
-            dispatch(fetchWeatherData({ city: newCity, token }));
-        }, 2000); 
+    const handleCityChange = (e) => {
+      setCity(e.target.value);
     };
   
   
