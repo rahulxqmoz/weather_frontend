@@ -42,7 +42,7 @@ const Dashboard = () => {
 
         debounceTimer.current = setTimeout(() => {
             dispatch(fetchWeatherData({ city: newCity, token }));
-        }, 500); 
+        }, 2000); 
     };
   
   
