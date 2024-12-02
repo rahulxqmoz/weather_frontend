@@ -9,7 +9,7 @@ export const fetchWeatherData = createAsyncThunk(
       const response = await axios.get(`https://weather-appxqmoz-b8bc0ab20be7.herokuapp.com/api/weather/${city}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      console.log(response.data)
+     
       return response.data;
     } catch (err) {
       return rejectWithValue(err.response?.data || "Failed to fetch weather data.");
