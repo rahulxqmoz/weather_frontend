@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WeatherCard from './WeatherCard';
 import WeatherChart from './WeatherChart';
@@ -15,6 +15,7 @@ const Dashboard = () => {
     const [city, setCity] = useState("Palakkad"); // Default city 
     const navigate = useNavigate();
     const dispatch = useDispatch(); 
+    const debounceTimer = useRef(null); 
   
     useEffect(() => {
       if (!token) {
@@ -29,6 +30,19 @@ const Dashboard = () => {
     const handleLogout = () => {
         dispatch(logout());
         navigate("/"); 
+    };
+
+     const handleCityChange = (e) => {
+        const newCity = e.target.value;
+        setCity(newCity);
+
+        if (debounceTimer.current) {
+            clearTimeout(debounceTimer.current); 
+        }
+
+        debounceTimer.current = setTimeout(() => {
+            dispatch(fetchWeatherData({ city: newCity, token }));
+        }, 500); 
     };
   
   
@@ -54,7 +68,7 @@ const Dashboard = () => {
                 className="form-control"
                 placeholder="Enter city name"
                 value={city}
-                onChange={(e) => setCity(e.target.value)}
+                onChange={handleCityChange}
               />
               <button className="btn btn-primary" onClick={fetchWeatherData} disabled={loading}>
                 {loading ? "Loading..." : "Search"}
