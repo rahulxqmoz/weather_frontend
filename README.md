@@ -1,88 +1,86 @@
-# Weather Application
+# WeatherApp Frontend
 
-This project consists of a React frontend and a backend deployed on Heroku. Follow the instructions below to set up the application locally and access the deployed version.
+This is the frontend for the WeatherApp, a weather analytics web application that provides real-time weather data visualization, user authentication, and role-based access control. It is built using React and Redux, integrating a public weather API and Google OAuth for secure authentication.
 
-## Deployed Version
+## Features
 
-- **Frontend (Vercel)**: [https://weather-frontend-green.vercel.app/](https://weather-frontend-green.vercel.app/)
-- **Backend (Heroku)**: [https://weather-appxqmoz-b8bc0ab20be7.herokuapp.com](https://weather-appxqmoz-b8bc0ab20be7.herokuapp.com)
+- **User Authentication**: Secure login using Google OAuth.
+- **Weather Data Visualization**: Real-time weather updates displayed with bar charts and line graphs.
+- **Role-Based Access Control**: Users have different access levels based on their roles.
+- **Responsive UI**: Built with React and Bootstrap for a seamless user experience.
 
-## Frontend Setup
+---
 
-### Prerequisites
+## Tech Stack
 
-Ensure the following are installed on your machine:
+- **Frontend:** React, Redux, Bootstrap
+- **Authentication:** Google OAuth
+- **State Management:** Redux
+- **Data Visualization:** Chart.js
+- **API Integration:** Public Weather API
 
-- **Node.js**: [Download Node.js](https://nodejs.org/en/)
-- **npm** (comes with Node.js) or **Yarn**: [Download Yarn](https://yarnpkg.com/)
+---
 
-### Installation Steps
+## Prerequisites
 
-1. **Clone the Frontend Repository**:
+Before setting up the project, ensure you have the following installed:
 
-   ```bash
-   git clone https://github.com/rahulxqmoz/weather_frontend.git
-   cd weather_frontend
-Install Dependencies:
+- **Node.js** (Download from [Node.js official website](https://nodejs.org/en/))
+- **npm** (comes with Node.js) or **Yarn** (optional) ([Download Yarn](https://yarnpkg.com/))
 
-Run the following command to install all required npm packages:
+---
 
+## Installation
 
-npm install
-Run the Application:
+### 1. Clone the Repository
 
-Start the development server:
+```bash
+git clone https://github.com/rahulxqmoz/weather_frontend.git
+cd weather_frontend
+```
 
+### 2. Install Dependencies
 
-npm start
-The application will be available at http://localhost:3000.
+```bash
+npm install  # or yarn install
+```
 
-Backend Setup
-Repository
-The backend code is available here: Backend Repository
+### 3. Create a .env File
 
-Prerequisites
-Ensure the following are installed:
+Create a `.env` file in the root directory and add the following environment variables:
 
-Python 3.8+
-pip (Python package installer)
-Installation Steps
-Clone the Backend Repository:
+```plaintext
+REACT_APP_WEATHER_API_KEY=<your_weather_api_key>
+REACT_APP_GOOGLE_CLIENT_ID=<your_google_client_id>
+REACT_APP_BACKEND_URL=http://localhost:8000  # URL of the backend
+```
 
+Replace `<your_weather_api_key>` and `<your_google_client_id>` with actual credentials.
 
-git clone https://github.com/rahulxqmoz/weatherapp_backend.git
-cd weatherapp_backend
-Install Dependencies:
+### 4. Start the Development Server
 
-Install the required Python packages by running:
+```bash
+npm start  # or yarn start
+```
 
+The application will be available at [http://localhost:3000](http://localhost:3000).
 
-pip install -r requirements.txt
-Configure the .env File:
+---
 
-If the project requires any environment variables (e.g., for API keys), create a .env file in the root of the project with the necessary variables. Example:
+## Backend Setup
 
+To fully utilize the application, ensure the backend is running locally. Follow the setup guide in the [WeatherApp Backend Repository](https://github.com/rahulxqmoz/weatherapp_backend.git).
 
-WEATHER_API_KEY=<your_weather_api_key>
-GOOGLE_CLIENT_ID=<your_google_client_id>
-Run the Application Locally:
+---
 
-Run the development server:
+## Notes
 
+- Ensure the backend is running at `http://localhost:8000` before testing API interactions.
+- Keep your `.env` file private and never push it to a public repository.
 
-python manage.py runserver
-The backend will be accessible at http://127.0.0.1:8000.
+---
 
-Important Notes
-Backend API Integration
-Ensure that the backend is either running locally or accessible via the Heroku-deployed URL:
+## License
 
-Base API URL: https://weather-appxqmoz-b8bc0ab20be7.herokuapp.com
-Source Code Links
-Frontend Repository: https://github.com/rahulxqmoz/weather_frontend.git
-Backend Repository: https://github.com/rahulxqmoz/weatherapp_backend.git
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-
-  
